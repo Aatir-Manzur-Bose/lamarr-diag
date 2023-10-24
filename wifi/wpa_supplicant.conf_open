@@ -1,0 +1,6 @@
+network={
+	ssid="B-Guest"
+	key_mgmt=NONE
+	priority=100
+	}
+	
