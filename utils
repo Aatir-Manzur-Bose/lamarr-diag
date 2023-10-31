@@ -1,0 +1,10 @@
+#!/bin/sh
+#Lamarr Test Utils
+fatal() {
+	echo "$@"
+	exit 1
+}
+log() {
+	STAMP=$(DATE +%F-%T)
+	echo "$STAMP" "$@" >> logfile
+
