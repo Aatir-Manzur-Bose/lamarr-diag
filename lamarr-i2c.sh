@@ -10,7 +10,7 @@ ti() {
 
         VAL=$(i2cget -y $BUS $DEV $REG 2>&1)
         RC=$?
-        if test -n "$EXPECTEDVALUE"; then test $VAL = $EXPECTEDVAL; RC=$?; fi
+        if test -n "$EXPECTEDVALUE"; then test $VAL = $EXPECTEDVALUE; RC=$?; fi
         if test $RC = 0; then
                 log $DEVICENAME okay
         else
