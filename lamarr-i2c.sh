@@ -10,6 +10,8 @@ ti() {
 
         VAL=$(i2cget -y $BUS $DEV $REG 2>&1)
         RC=$?
+        echo $VAL val
+        echo $EXPECTEDVALUE
         if test -n "$EXPECTEDVALUE"; then test $VAL = $EXPECTEDVALUE; RC=$?; fi
         if test $RC = 0; then
                 log $DEVICENAME okay
@@ -24,12 +26,21 @@ test_all() {
         done
 }
 
+show_help() {
+        echo " USAGE: lamar-i2c [-n <no of iterations to run>]
+Make sure devices are setup under i2cdevs
+All Logs stored in log file"
+}
+
 test -e i2cdevs || fatal "Missing i2cdevs file"
 iterations=1
-while getopts n: flag
+while getopts n:h flag
 do
         case "${flag}" in
                 n) iterations=${OPTARG};;
+                h|\?) show_help
+                exit 0
+                ;;
         esac
 done
 
